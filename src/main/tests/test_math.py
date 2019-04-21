@@ -1,5 +1,5 @@
 import unittest
-import math
+from main.modules.math import *
 
 class TestMath(unittest.TestCase):
   #testing of math functions
