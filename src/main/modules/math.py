@@ -56,3 +56,26 @@ def factorial(x):
 	if x == 0:
 		return 1
 	return factorial(x * factorial(x-1))
+
+def power(x, y):
+	"""Raises number to a given power.
+	@param x number.
+	@param y power value.
+	@return Decimal result
+	"""
+	return D(str(x)) ** D(str(y))
+
+def square(x):
+	"""Gives square root of a number.
+	@@aram x number.
+	@return Decimal result
+	"""
+	return D(str(x)) ** D(1/2)
+
+def nth_root(x, y):
+	"""Gives nth root of a number.
+	@param x number.
+	@param y n number
+	@return Decimal result
+	"""
+	return D(str(x)) ** D(1/Decimal(str(y)))
