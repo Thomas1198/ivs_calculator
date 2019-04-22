@@ -15,8 +15,11 @@ class CalculatorGridLayout(GridLayout):
     def calculate(self, expr):
         if expr:
             try:
-                #function that return dict. of all functions used in raw input
                 def organ_operations(text):
+                    """Organize operations in list.
+	               @param text input string text.
+	               @return list of operations result.
+	               """
                     op = ['*','/','+','-','!','^','√']
                     oper_input = []
                     for i in range(len(text)):
@@ -24,8 +27,11 @@ class CalculatorGridLayout(GridLayout):
                             oper_input.append(text[i])
                     return oper_input
 
-                #function that return dict. of all numbers used in raw input
                 def organ_number(text):
+                    """Organize numbers in list.
+	               @param text input string text.
+	               @return list of numbers result.
+	               """
                     op = ['*','/','+','-','!','^','√']
                     number_input = []
                     number = ''
