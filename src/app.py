@@ -15,12 +15,33 @@ class CalculatorGridLayout(GridLayout):
     def calculate(self, expr):
         if expr:
             try:
-                #Cond. to find if we want power func.
-                if '^' in self.display.text:
-                    power_func = []
-                    power_func = self.display.text.split('^')
-                    self.display.text = str(power(power_func[0], power_func[1]))
-                #self.display.text = calculate(expr))
+                #function that return dict. of all functions used in raw input
+                def organ_operations(text):
+                    op = ['*','/','+','-','!','^','√']
+                    oper_input = []
+                    for i in range(len(text)):
+                        if text[i] in op:
+                            oper_input.append(text[i])
+                    return oper_input
+
+                #function that return dict. of all numbers used in raw input
+                def organ_number(text):
+                    op = ['*','/','+','-','!','^','√']
+                    number_input = []
+                    number = ''
+                    for i in range(len(text)):
+                        if (text[i] in op)!=1:
+                            number += text[i]
+                        else:
+                            number_input.append(number)
+                            number = ''
+                    number_input.append(number)
+                    return number_input
+
+                operations = []
+                operations = organ_operations(self.display.text)
+                numbers = []
+                numbers = organ_number(self.display.text)
                 
             except Exception:
                 self.display.text = "err"
