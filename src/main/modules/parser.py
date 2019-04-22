@@ -2,6 +2,6 @@
 @brief Expression parser.
 """
 
-def parse_expr():
+def solve_expr(expression):
 	# TODO
 	return 0
