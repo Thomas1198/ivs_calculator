@@ -57,12 +57,12 @@ def fact_square(text):
 
         elif i == (len(text)) - 1:
             if text[i] == '!':
-                newText.append(factorial(text[i - 1]))
+                newText.append(factorial(int(text[i - 1])))
             elif text[i - 1] != '√':
                 newText.append(text[i])
 
         elif text[i] == '!':
-            newText.append(factorial(text[i - 1]))
+            newText.append(factorial(int(text[i - 1])))
 
         elif text[i] == '√':
             newText.append(square(text[i + 1]))
@@ -72,6 +72,62 @@ def fact_square(text):
     return newText
 
 
+def final(text_list):
+  op = ['*','/','+','-','^','√']
+  finalText = []
+  i = 0
+  x = 0.0
+  y = 0.0
+  while i < len(text_list):
+    if text_list[i] not in op :
+      finalText.append(text_list[i])
+    else:
+      if text_list[i] == '*':
+        x = text_list[i-2]
+        y = text_list[i-1]
+        finalText.pop(i-1)
+        finalText.pop(i-2)
+        finalText.append(multiply(x,y))
+
+      elif text_list[i] == '/':
+        x = text_list[i-2]
+        y = text_list[i-1]
+        finalText.pop(i-1)
+        finalText.pop(i-2)
+        finalText.append(divide(x,y))
+
+      elif text_list[i] == '+':
+        x = text_list[i-2]
+        y = text_list[i-1]
+        finalText.pop(i-1)
+        finalText.pop(i-2)
+        finalText.append(add(x,y))
+
+      elif text_list[i] == '-':
+        x = text_list[i-2]
+        y = text_list[i-1]
+        finalText.pop(i-1)
+        finalText.pop(i-2)
+        finalText.append(subtract(x,y))
+
+      elif text_list[i] == '^':
+        x = text_list[i-2]
+        y = text_list[i-1]
+        finalText.pop(i-1)
+        finalText.pop(i-2)
+        finalText.append(power(x,y))
+
+      elif text_list[i] == '√':
+        x = text_list[i-2]
+        y = text_list[i-1]
+        finalText.pop(i-1)
+        finalText.pop(i-2)
+        finalText.append(nth_root(x,y))
+    i += 1
+
+  return finalText
+
+
 def solve_expr(expresion_str):
     expresion_infix = expresionToList(expresion_str)
     print("-LIST-", expresion_infix)
@@ -79,4 +135,6 @@ def solve_expr(expresion_str):
     print("-LIST2-", expresion_infix)
     expresion_postfix = infixToPostfix(expresion_infix)
     print("-POSTFIX-", expresion_postfix)
-    return 0
+    postfix = final(expresion_postfix)
+    print("-final-", postfix)
+    return postfix
