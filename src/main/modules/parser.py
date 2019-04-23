@@ -83,7 +83,7 @@ def evalOneOperandOperators(expr_infix):
             elif expr_infix[i - 1] != '√':
                 res_list.append(expr_infix[i])
             else:
-                if expr_infix[i - 2] not in op:
+                if expr_infix[i - 2] not in op and i-1 != 0:
                     res_list.append(expr_infix[i])
 
         elif expr_infix[i] == '!':
@@ -95,7 +95,7 @@ def evalOneOperandOperators(expr_infix):
         elif (expr_infix[i + 1] != '!') and (expr_infix[i - 1] != '√'):
             res_list.append(expr_infix[i])
 
-        elif (expr_infix[i - 1] == '√') and (expr_infix[i - 2] not in op):
+        elif (expr_infix[i - 1] == '√') and (expr_infix[i - 2] not in op) and (i-1 != 0):
             res_list.append(expr_infix[i])
 
     return res_list
