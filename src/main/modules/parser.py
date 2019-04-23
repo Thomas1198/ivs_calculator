@@ -1,5 +1,8 @@
 """@file parser.py
 @brief Expression parser.
+@author xdorda00
+@author xmatou32
+@date 23.4. 2019
 """
 
 from main.modules.math import *
@@ -9,9 +12,9 @@ from main.modules.math import *
 #            2 /*
 #            1 -+
 def infixToPostfix(expr_infix):
-    """
-    @param expr_infix:
-    @return:
+    """Made list from Infix form to Postfix form
+    @param expr_infix list
+    @return list result
     """
     priorities = {'/': 2, '*': 2, '-': 1, '+': 1, '^': 3, '√': 3}
     expr_postfix = list()
@@ -31,10 +34,9 @@ def infixToPostfix(expr_infix):
 
 
 def expresionStrToList(expr_str):
-    """
-
-    @param expr_str:
-    @return:
+    """Str input into list
+    @param expr_str string input
+    @return list result
     """
     expr_list = list()
     number = ""
@@ -62,9 +64,9 @@ def expresionStrToList(expr_str):
 
 
 def evalOneOperandOperators(expr_infix):
-    """
-    @param expr_infix:
-    @return:
+    """Function for factorial and square functions
+    @param expr_infix list 
+    @return list result
     """
     op = ['*', '/', '+', '-', '^', '√']
     res_list = []
@@ -100,9 +102,9 @@ def evalOneOperandOperators(expr_infix):
 
 
 def evalExpr(postfixList):
-    """
-    @param postfixList:
-    @return:
+    """func for calculation
+    @param postfixList list
+    @return result of input
     """
     stack = list()
     for element in postfixList:
@@ -132,10 +134,9 @@ def evalExpr(postfixList):
 
 
 def solve_expr(expr_str):
-    """
-
-    @param expr_str:
-    @return:
+    """main function that call others functions
+    @param expr_str string input
+    @return result of input 
     """
     expr_infix = expresionStrToList(expr_str)
     print(expr_str)
