@@ -12,9 +12,9 @@ from main.modules.math import *
 #            2 /*
 #            1 -+
 def infixToPostfix(expr_infix):
-    """Made list from Infix form to Postfix form
-    @param expr_infix list
-    @return list result
+    """Transforms expression in Infix notation to postfix notation
+    @param expr_infix list of operands and operators in infix notation
+    @return list of operands and operators in postfix notation
     """
     priorities = {'/': 2, '*': 2, '-': 1, '+': 1, '^': 3, '√': 3}
     expr_postfix = list()
@@ -34,9 +34,9 @@ def infixToPostfix(expr_infix):
 
 
 def expresionStrToList(expr_str):
-    """Str input into list
+    """Parses numbers and operators from input string into a list
     @param expr_str string input
-    @return list result
+    @return list of operands and operators
     """
     expr_list = list()
     number = ""
@@ -65,7 +65,7 @@ def expresionStrToList(expr_str):
 
 def evalOneOperandOperators(expr_infix):
     """Function for factorial and square functions
-    @param expr_infix list 
+    @param expr_infix list of operands and operators in infix notation
     @return list result
     """
     op = ['*', '/', '+', '-', '^', '√']
@@ -83,7 +83,7 @@ def evalOneOperandOperators(expr_infix):
             elif expr_infix[i - 1] != '√':
                 res_list.append(expr_infix[i])
             else:
-                if expr_infix[i - 2] not in op and i-1 != 0:
+                if expr_infix[i - 2] not in op and i - 1 != 0:
                     res_list.append(expr_infix[i])
 
         elif expr_infix[i] == '!':
@@ -95,7 +95,7 @@ def evalOneOperandOperators(expr_infix):
         elif (expr_infix[i + 1] != '!') and (expr_infix[i - 1] != '√'):
             res_list.append(expr_infix[i])
 
-        elif (expr_infix[i - 1] == '√') and (expr_infix[i - 2] not in op) and (i-1 != 0):
+        elif (expr_infix[i - 1] == '√') and (expr_infix[i - 2] not in op) and (i - 1 != 0):
             res_list.append(expr_infix[i])
 
     return res_list
@@ -103,8 +103,8 @@ def evalOneOperandOperators(expr_infix):
 
 def evalExpr(postfixList):
     """func for calculation
-    @param postfixList list
-    @return result of input
+    @param postfixList list of operands and operators in postfix notation
+    @return result of expression
     """
     stack = list()
     for element in postfixList:
@@ -134,17 +134,12 @@ def evalExpr(postfixList):
 
 
 def solve_expr(expr_str):
-    """main function that call others functions
+    """
+    main function that call others functions
     @param expr_str string input
     @return result of input 
     """
     expr_infix = expresionStrToList(expr_str)
-    print(expr_str)
-    print("-LIST-", expr_infix)
     expr_infix = evalOneOperandOperators(expr_infix)
-    print("-EVALONE-", expr_infix)
     expr_postfix = infixToPostfix(expr_infix)
-    print("-POSTFIX-", expr_postfix)
-    #print("EXPECTED:", calculate(expr_str))
-    print("RETURNED:", evalExpr(expr_postfix))
     return evalExpr(expr_postfix)
