@@ -147,4 +147,7 @@ def solve_expr(expr_str):
     print("-POSTFIX-", expr_postfix)
     #print("EXPECTED:", calculate(expr_str))
     print("RETURNED:", evalExpr(expr_postfix))
-    return evalExpr(expr_postfix)
+    result = evalExpr(expr_postfix)
+    if result - int(result) == 0:
+        return int(result)
+    return result

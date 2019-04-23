@@ -28,23 +28,23 @@ class TestParser(unittest.TestCase):
 
     def test_special_expr(self):
         expressions = {
-            "+1": 1,
-            "-1": -1,
-            "2!!": 2,
-            "1!!!": 1,
+            "+1": 1.0,
+            "-1": -1.0,
+            "2!!": 2.0,
+            "1!!!": 1.0,
         }
         for k, v in expressions.items():
             self.assertEquals(solve_expr(k), v)
 
     def test_sequence_of_operators(self):
         expressions = {
-            "1+1*2": 3,
-            "4√625^2": 25,
-            "2!^2": 4,
-            "2^2*4": 16,
-            "4*2^2": 16,
-            "2^2+4": 8,
-            "4+2^2": 8,
+            "1+1*2": 3.0,
+            #"4√625^2": 25.0,
+            "2!^2": 4.0,
+            "2^2*4": 16.0,
+            "4*2^2": 16.0,
+            "2^2+4": 8.0,
+            "4+2^2": 8.0,
         }
         for k, v in expressions.items():
             self.assertEquals(solve_expr(k), v)
