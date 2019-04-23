@@ -80,60 +80,29 @@ def fact_square(text):
     return newText
 
 
-def final(text_list):
+def final(text):
   op = ['*','/','+','-','^','√']
-  finalText = []
-  i = 0
-  x = 0.0
-  y = 0.0
-  while i < len(text_list):
-    if text_list[i] not in op :
-      finalText.append(text_list[i])
-    else:
-      if text_list[i] == '*':
-        x = text_list[i-2]
-        y = text_list[i-1]
-        finalText.pop(i-1)
-        finalText.pop(i-2)
-        finalText.append(multiply(x,y))
+  stack = []
+  for i in text:
+    if i not in op:
+      stack.append(i)
+      continue
 
-      elif text_list[i] == '/':
-        x = text_list[i-2]
-        y = text_list[i-1]
-        finalText.pop(i-1)
-        finalText.pop(i-2)
-        finalText.append(divide(x,y))
-
-      elif text_list[i] == '+':
-        x = text_list[i-2]
-        y = text_list[i-1]
-        finalText.pop(i-1)
-        finalText.pop(i-2)
-        finalText.append(add(x,y))
-
-      elif text_list[i] == '-':
-        x = text_list[i-2]
-        y = text_list[i-1]
-        finalText.pop(i-1)
-        finalText.pop(i-2)
-        finalText.append(subtract(x,y))
-
-      elif text_list[i] == '^':
-        x = text_list[i-2]
-        y = text_list[i-1]
-        finalText.pop(i-1)
-        finalText.pop(i-2)
-        finalText.append(power(x,y))
-
-      elif text_list[i] == '√':
-        x = text_list[i-2]
-        y = text_list[i-1]
-        finalText.pop(i-1)
-        finalText.pop(i-2)
-        finalText.append(nth_root(x,y))
-    i += 1
-
-  return finalText
+    x, y = stack.pop(), stack.pop()
+    if i == '+':
+      stack.append(add(x, y))
+    elif i == '-':
+      stack.append(substract(x, y))
+    elif i == '*':
+      stack.append(multiply(x, y))
+    elif i == '/':
+      stack.append(divide(x, y))
+    elif i == '^':
+      stack.append(power(x, y))
+    elif i == '√':
+      stack.append(nth_root(x, y))
+    #NEED FIX
+  return stack
 
 
 def solve_expr(expresion_str):
