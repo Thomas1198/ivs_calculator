@@ -19,16 +19,16 @@ def expresionToList(expresion):
     res_list = list()
     number = ""
     for c in expresion:
-        if c in "0123456789":
+        if c in "0123456789.":
             number = number + c
         elif c in "/*-+!^√":
             if len(number) != 0:
-                res_list.append(int(number))
+                res_list.append(float(number))
                 number = ""
             res_list.append(c)
 
     if len(number) != 0:
-        res_list.append(int(number))
+        res_list.append(float(number))
     return res_list
 
 
