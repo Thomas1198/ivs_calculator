@@ -1,4 +1,6 @@
-from main.modules.math import *
+import sys
+sys.path.insert(0,'../..')
+from src.main.modules.math import *
 
 # vypocte smerodatnou odchylku z cisel vstupniho souboru
 
