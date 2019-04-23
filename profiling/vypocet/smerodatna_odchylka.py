@@ -4,8 +4,8 @@ from main.modules.math import *
 
 import sys
 
-f=open('1000cisel.txt','r')
-num = f.readline()
+#f=open('1000cisel.txt','r')
+num = sys.stdin.readline()
 list=[]
 
 list=num.split()
