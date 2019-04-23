@@ -10,7 +10,6 @@ from main.modules.math import *
 #            1 -+
 def infixToPostfix(expr_infix):
     """
-
     @param expr_infix:
     @return:
     """
@@ -21,7 +20,7 @@ def infixToPostfix(expr_infix):
         if element not in ('/', '*', '-', '+', '^', '√'):
             expr_postfix.append(element)
         elif element in ('/', '*', '-', '+', '^', '√'):
-            while not len(stack) == 0 and priorities[stack[-1]] > priorities[element]:
+            while not (len(stack) == 0) and priorities[stack[-1]] >= priorities[element]:
                 expr_postfix.append(stack.pop())
             stack.append(element)
 
@@ -121,7 +120,6 @@ def evalExpr(postfixList):
                 result = multiply(op1, op2)
             elif element == '-':
                 result = subtract(op1, op2)
-                print(result)
             elif element == '+':
                 result = add(op1, op2)
             elif element == '^':
@@ -142,10 +140,12 @@ def solve_expr(expr_str):
     @return:
     """
     expr_infix = expresionStrToList(expr_str)
+    print(expr_str)
     print("-LIST-", expr_infix)
     expr_infix = evalOneOperandOperators(expr_infix)
-    print("-LIST2-", expr_infix)
+    print("-EVALONE-", expr_infix)
     expr_postfix = infixToPostfix(expr_infix)
     print("-POSTFIX-", expr_postfix)
-    print("EXPECTED:", eval(expr_str))
+    print("EXPECTED:", calculate(expr_str))
+    print("RETURNED:", evalExpr(expr_postfix))
     return evalExpr(expr_postfix)
