@@ -86,13 +86,33 @@ def evalOneOperandOperators(expr_infix):
     return res_list
 
 
-def final(text):
-  op = ['*','/','+','-','^','√']
-  stack = []
-  for i in text:
-    if i not in op:
-      stack.append(i)
-      continue
+def evalExpr(postfixList):
+    stack = list()
+    for element in postfixList:
+        if element not in ('/', '*', '-', '+', '^', '√'):
+            stack.append(element)
+        else:
+            op2 = stack.pop()
+            op1 = stack.pop()
+            result = 0
+            if element == '/' and op2 != 0.0:
+                result = divide(op1, op2)
+            elif element == '*':
+                result = multiply(op1, op2)
+            elif element == '-':
+                result = subtract(op1, op2)
+                print(result)
+            elif element == '+':
+                result = add(op1, op2)
+            elif element == '^':
+                result = power(op1, op2)
+            elif element == '√':
+                result = nth_root(op1, op2)
+            else:
+                # TODO add reaction on error
+                print("Unknown operand/operator")
+            stack.append(result)
+    return stack[0]
 
 
 def solve_expr(expr_str):
