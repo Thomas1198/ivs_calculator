@@ -147,4 +147,5 @@ def solve_expr(expr_str):
     print("-LIST2-", expr_infix)
     expr_postfix = infixToPostfix(expr_infix)
     print("-POSTFIX-", expr_postfix)
+    print("EXPECTED:", eval(expr_str))
     return evalExpr(expr_postfix)
