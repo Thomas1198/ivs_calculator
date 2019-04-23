@@ -1,9 +1,9 @@
-"""@file parser.py
-@brief Expression parser.
-@author xdorda00
-@author xmatou32
-@date 23.4. 2019
-"""
+##
+# @file parser.py
+# @brief Expression parser.
+# @author xdorda00
+# @author xmatou32
+# @date 23.4. 2019
 
 from main.modules.math import *
 
@@ -11,11 +11,12 @@ from main.modules.math import *
 # priorities 3 ^√
 #            2 /*
 #            1 -+
+
+##
+# Transforms expression in Infix notation to postfix notation
+# @param expr_infix list of operands and operators in infix notation
+# @return list of operands and operators in postfix notation
 def infixToPostfix(expr_infix):
-    """Transforms expression in Infix notation to postfix notation
-    @param expr_infix list of operands and operators in infix notation
-    @return list of operands and operators in postfix notation
-    """
     priorities = {'/': 2, '*': 2, '-': 1, '+': 1, '^': 3, '√': 3}
     expr_postfix = list()
     stack = list()
@@ -33,11 +34,11 @@ def infixToPostfix(expr_infix):
     return expr_postfix
 
 
+##
+# Parses numbers and operators from input string into a list
+# @param expr_str string input
+# @return list of operands and operators
 def expresionStrToList(expr_str):
-    """Parses numbers and operators from input string into a list
-    @param expr_str string input
-    @return list of operands and operators
-    """
     expr_list = list()
     number = ""
     for c in expr_str:
@@ -63,11 +64,11 @@ def expresionStrToList(expr_str):
     return expr_list
 
 
+##
+# Function for factorial and square functions
+# @param expr_infix list of operands and operators in infix notation
+# @return list result
 def evalOneOperandOperators(expr_infix):
-    """Function for factorial and square functions
-    @param expr_infix list of operands and operators in infix notation
-    @return list result
-    """
     op = ['*', '/', '+', '-', '^', '√']
     res_list = []
     for i in range(len(expr_infix)):
@@ -101,11 +102,11 @@ def evalOneOperandOperators(expr_infix):
     return res_list
 
 
+##
+# func for calculation
+# @param postfixList list of operands and operators in postfix notation
+# @return result of expression
 def evalExpr(postfixList):
-    """func for calculation
-    @param postfixList list of operands and operators in postfix notation
-    @return result of expression
-    """
     stack = list()
     for element in postfixList:
         if element not in ('/', '*', '-', '+', '^', '√'):
@@ -133,12 +134,11 @@ def evalExpr(postfixList):
     return stack[0]
 
 
+##
+# main function that call others functions
+# @param expr_str string input
+# @return result of input 
 def solve_expr(expr_str):
-    """
-    main function that call others functions
-    @param expr_str string input
-    @return result of input 
-    """
     expr_infix = expresionStrToList(expr_str)
     expr_infix = evalOneOperandOperators(expr_infix)
     expr_postfix = infixToPostfix(expr_infix)
