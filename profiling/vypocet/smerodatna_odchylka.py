@@ -1,5 +1,6 @@
 from main.modules.math import *
 
+# @author xosols00
 # vypocte smerodatnou odchylku z cisel vstupniho souboru
 
 import sys
