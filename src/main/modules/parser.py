@@ -26,6 +26,9 @@ def expresionToList(expresion):
                 res_list.append(float(number))
                 number = ""
             res_list.append(c)
+        else:
+            #TODO add reaction on error
+            print("Unknown operand/operator")
 
     if len(number) != 0:
         res_list.append(float(number))
