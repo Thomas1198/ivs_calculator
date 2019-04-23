@@ -3,17 +3,27 @@
 """
 import math
 
-def organ_operations(text):
-	"""Organize operations in list.
-	@param text input string text.
-	@return list of operations result.
-	"""
-	op = ['*','/','+','-','!','^','√']
-	oper_input = []
-	for i in range(len(text)):
-		if text[i] in op:
-			oper_input.append(text[i])
-	return oper_input
+
+# priorities 3 ^√
+#            2 /*
+#            1 -+
+def infixToPostfix(expresions):
+    priorities = {'/': 2, '*': 2, '-': 1, '+': 1, '^': 3, '√': 3}
+    postFixList = list()
+    stack = list()
+    for element in expresions:
+        if element not in ('/', '*', '-', '+', '^', '√'):
+            postFixList.append(element)
+        elif element in ('/', '*', '-', '+', '^', '√'):
+            while not len(stack) == 0 and priorities[stack[-1]] > priorities[element]:
+                postFixList.append(stack.pop())
+            stack.append(element)
+
+    while not len(stack) == 0:
+        postFixList.append(stack.pop())
+
+    return postFixList
+
 
 def expresionToList(expresion):
     res_list = list()
