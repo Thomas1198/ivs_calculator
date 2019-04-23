@@ -15,27 +15,25 @@ def organ_operations(text):
 			oper_input.append(text[i])
 	return oper_input
 
-def organ_number(text):
-	"""Organize numbers in list.
-	@param text input string text.
-	@return list of numbers result.
-	"""
-	op = ['*','/','+','-','!','^','√']
-	number_input = []
-	number = ''
-	for i in range(len(text)):
-		if (text[i] in op)!=1:
-			number += text[i]
-		else:
-			number_input.append(number)
-			number = ''
-	number_input.append(number)
-	return number_input
+def expresionToList(expresion):
+    res_list = list()
+    number = ""
+    for c in expresion:
+        if c in "0123456789":
+            number = number + c
+        elif c in "/*-+!^√":
+            if len(number) != 0:
+                res_list.append(int(number))
+                number = ""
+            res_list.append(c)
 
-def solve_expr(expression):
-	operations = []
-	numbers = []
-	operations = organ_operations(expression)
-	numbers = organ_number(expression)
-	#TODO
-	return 0 #TODO
+    if len(number) != 0:
+        res_list.append(int(number))
+    return res_list
+
+
+def solve_expr(expresion_str):
+    print(expresion_str)
+    expresion = expresionToList(expresion_str)
+    print(expresion)
+    return 0
