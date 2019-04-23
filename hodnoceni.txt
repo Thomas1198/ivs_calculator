@@ -1,0 +1,4 @@
+xdorda00 100 (parser modul, komentare)
+xchova20 100 (koordinacia timu, math modul, testy na math modul, testy na parser modul, komentare, makefile, doxygen, graficke rozhranie, napoveda)
+xmatou32 100 Matoušek Milan (mockup, parser modul komentare, screenshot)
+xosols00 100 Osolsobě Jan (profiling, uzivatelska prirucka)
