@@ -1,7 +1,8 @@
 """@file parser.py
 @brief Expression parser.
 """
-import math
+
+from main.modules.math import *
 
 
 # priorities 3 ^√
@@ -37,41 +38,45 @@ def expresionToList(expresion):
                 number = ""
             res_list.append(c)
         else:
-            #TODO add reaction on error
+            # TODO add reaction on error
             print("Unknown operand/operator")
 
     if len(number) != 0:
         res_list.append(float(number))
     return res_list
 
+
 def fact_square(text):
-  newText = []
-  for i in range(len(text)):
-    if i == 0:
-      if text[i] == '√':
-        newText.append(square(text[i+1]))
-      elif text[i+1] != '!':
-        newText.append(text[i])
+    newText = []
+    for i in range(len(text)):
+        if i == 0:
+            if text[i] == '√':
+                newText.append(square(text[i + 1]))
+            elif text[i + 1] != '!':
+                newText.append(text[i])
 
-    elif i == (len(text))-1:
-      if text[i] == '!':
-        newText.append(factorial(text[i-1])
-      elif text[i-1] != '√':
-        newText.append(text[i])
+        elif i == (len(text)) - 1:
+            if text[i] == '!':
+                newText.append(factorial(text[i - 1]))
+            elif text[i - 1] != '√':
+                newText.append(text[i])
 
-    elif text[i] == '!':
-      newText.append(factorial(text[i-1])
+        elif text[i] == '!':
+            newText.append(factorial(text[i - 1]))
 
-    elif text[i] == '√':
-      newText.append(square(text[i+1]))
+        elif text[i] == '√':
+            newText.append(square(text[i + 1]))
 
-    elif (text[i+1] != '!') and (text[i-1] != '√'):
-      newText.append(text[i])
-  return newText
+        elif (text[i + 1] != '!') and (text[i - 1] != '√'):
+            newText.append(text[i])
+    return newText
 
 
 def solve_expr(expresion_str):
-    print(expresion_str)
-    expresion = expresionToList(expresion_str)
-    print(expresion)
+    expresion_infix = expresionToList(expresion_str)
+    print("-LIST-", expresion_infix)
+    expresion_infix = fact_square(expresion_infix)
+    print("-LIST2-", expresion_infix)
+    expresion_postfix = infixToPostfix(expresion_infix)
+    print("-POSTFIX-", expresion_postfix)
     return 0
