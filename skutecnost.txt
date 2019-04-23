@@ -1,0 +1,26 @@
+﻿Rozdělení práce:
+Nakonec se práce rozdělila podle chuti a aktuálních možností jednotlivých členů.
+* Testování: xchova20
+* Mat. knihovna: xchova20
+* Profiling: xosols00
+* Parsování: xdorda00, xmatou32
+* Instalátor a makefile: xchova20
+* Doxygen: xchova20, xdorda00, xmatou32
+* Dokumentace: xosols00
+
+Komunikační kanály
+Primární: Facebook chat + hlasové hovory                                      DODRŽENO
+Priebežne, pri väčších celkoch: Osobné stretnutia                             NEDODRŽENO
+Pravidla pro komunikaci
+Facebook chat - rozdelenie práce, pravidelná komunikácia, koordinácia tímu    DODRŽENO
+Osobní srazy- demonštrácia individuálnej práce, vysvetlenie nejasností        NEDODRŽENO
+
+
+Dodržení termínů:
+19.03. - Vytvořený týmový plán, dohodnutá komunikace atd.        DODRŽEN
+20.03. - Odevzdání - plán                                        DODRŽEN
+01.04. - Vytvoření testů                                         DODRŽEN
+14.04. - Vytvořené GUI, a matematické knihovny                   DODRŽEN
+20.04. - Program projde všemi testy                              NEDODRŽEN
+22.04. - Vytvořená dokumentace                                   NEDODRŽEN
+24.04. - Odevzdání - produkt                                     DODRŽEN
