@@ -1,4 +1,4 @@
-PYTHON=python3.7
+PYTHON=python3
 
 .PHONY: clean test run
 .DEFAULT: all
@@ -15,12 +15,11 @@ clean:
 
 #spusti testy
 test:
-	@$(PYTHON) tests/test_math.py
-	@$(PYTHON) tests/test_parser.py
+	@$(PYTHON) -m unittest tests/*
 
 #generovani dokumentace
 doc:
-	doxygen
+	doxygen Doxyfile
 
 #spusti program
 run:
