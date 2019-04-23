@@ -47,6 +47,7 @@ def expresionToList(expresion):
 
 
 def fact_square(text):
+    op = ['*','/','+','-','^','√']
     newText = []
     for i in range(len(text)):
         if i == 0:
@@ -60,15 +61,22 @@ def fact_square(text):
                 newText.append(factorial(int(text[i - 1])))
             elif text[i - 1] != '√':
                 newText.append(text[i])
+            else:
+                if text[i-2] not in op:
+                    newText.append(text[i])
 
         elif text[i] == '!':
             newText.append(factorial(int(text[i - 1])))
 
-        elif text[i] == '√':
+        elif text[i] == '√' and text[i-1] in op:
             newText.append(square(text[i + 1]))
 
         elif (text[i + 1] != '!') and (text[i - 1] != '√'):
             newText.append(text[i])
+
+        elif (text[i-1] == '√') and (text[i-2] not in op):
+            newText.append(text[i])
+
     return newText
 
 
