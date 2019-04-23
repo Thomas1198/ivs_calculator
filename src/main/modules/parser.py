@@ -9,6 +9,11 @@ from main.modules.math import *
 #            2 /*
 #            1 -+
 def infixToPostfix(expr_infix):
+    """
+
+    @param expr_infix:
+    @return:
+    """
     priorities = {'/': 2, '*': 2, '-': 1, '+': 1, '^': 3, '√': 3}
     expr_postfix = list()
     stack = list()
@@ -27,6 +32,11 @@ def infixToPostfix(expr_infix):
 
 
 def expresionStrToList(expr_str):
+    """
+
+    @param expr_str:
+    @return:
+    """
     expr_list = list()
     number = ""
     for c in expr_str:
@@ -53,6 +63,11 @@ def expresionStrToList(expr_str):
 
 
 def evalOneOperandOperators(expr_infix):
+    """
+
+    @param expr_infix:
+    @return:
+    """
     op = ['*', '/', '+', '-', '^', '√']
     res_list = []
     for i in range(len(expr_infix)):
@@ -87,6 +102,11 @@ def evalOneOperandOperators(expr_infix):
 
 
 def evalExpr(postfixList):
+    """
+
+    @param postfixList:
+    @return:
+    """
     stack = list()
     for element in postfixList:
         if element not in ('/', '*', '-', '+', '^', '√'):
@@ -95,7 +115,7 @@ def evalExpr(postfixList):
             op2 = stack.pop()
             op1 = stack.pop()
             result = 0
-            if element == '/' and op2 != 0.0:
+            if element == '/':
                 result = divide(op1, op2)
             elif element == '*':
                 result = multiply(op1, op2)
@@ -116,6 +136,11 @@ def evalExpr(postfixList):
 
 
 def solve_expr(expr_str):
+    """
+
+    @param expr_str:
+    @return:
+    """
     expr_infix = expresionStrToList(expr_str)
     print("-LIST-", expr_infix)
     expr_infix = evalOneOperandOperators(expr_infix)
