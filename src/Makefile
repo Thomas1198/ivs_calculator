@@ -12,15 +12,11 @@ pack:
 
 #smaze vsechny soubory co nemaji byt odevzdany
 clean:
+	rm -fr `find ../ | egrep '__pycache__|html'`
 
 #spusti testy
 test:
-<<<<<<< HEAD
 	@$(PYTHON) -m unittest tests/*
-=======
-	@$(PYTHON) -m unittest tests/test_math.py
-	@$(PYTHON) -m unittest tests/test_parser.py
->>>>>>> e60028f988d632c7bbf03efd262c04d864d09e0c
 
 #generovani dokumentace
 doc:
