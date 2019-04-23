@@ -12,6 +12,7 @@ pack:
 
 #smaze vsechny soubory co nemaji byt odevzdany
 clean:
+	rm -fr `find ../ | egrep '__pycache__|html'`
 
 #spusti testy
 test:
