@@ -10,6 +10,7 @@ from kivy.clock import Clock
 
 
 from main.modules.math import *
+from main.modules.parser import solve_expr
 
 kivy.require("1.10.1")
 #Builder.load_file('main/views/layout.kv')
@@ -21,40 +22,7 @@ class CalculatorGridLayout(GridLayout):
     def calculate(self, expr):
         if expr:
             try:
-                def organ_operations(text):
-                    """Organize operations in list.
-                    @param text input string text.
-                    @return list of operations result.
-                    """
-                    op = ['*','/','+','-','!','^','√']
-                    oper_input = []
-                    for i in range(len(text)):
-                        if text[i] in op:
-                            oper_input.append(text[i])
-                    return oper_input
-
-                def organ_number(text):
-                    """Organize numbers in list.
-                    @param text input string text.
-                    @return list of numbers result.
-                    """
-                    op = ['*','/','+','-','!','^','√']
-                    number_input = []
-                    number = ''
-                    for i in range(len(text)):
-                        if (text[i] in op)!=1:
-                            number += text[i]
-                        else:
-                            number_input.append(number)
-                            number = ''
-                    number_input.append(number)
-                    return number_input
-
-                operations = []
-                operations = organ_operations(self.display.text)
-                numbers = []
-                numbers = organ_number(self.display.text)
-                
+                self.display.text = str(solve_expr(self.display.text))
             except Exception:
                 self.display.text = "err"
 
