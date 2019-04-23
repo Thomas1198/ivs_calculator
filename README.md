@@ -10,5 +10,21 @@ Do commitov piste presne vsetky zmeny a odovodnenie, nieco ako "small fix" urcit
 ## Spustenie
 Hlavny subor je app.py, spusta sa pomocou 
 ```
-python3.7 app.py
+make run
 ```
+
+Prostredi
+---------
+Ubuntu 64bit
+
+Autori
+------
+Hungry BaNaNaS
+- xdorda00 Tomáš Dorda 
+- xchova20 Chovancová Simona	
+- xmatou32 Matoušek Milan 
+- xosols00 Osolsobě Jan
+
+Licence
+-------
+Tento program je poskytovan s licencí GNU GP v3.0.
