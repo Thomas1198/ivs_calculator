@@ -38,14 +38,19 @@ def fact_square(text):
   newText = []
   for i in range(len(text)):
     if i == 0:
-      if text[i+1] != '!':
+      if text[i] == '√':
+        newText.append(square(text[i+1]))
+      elif text[i+1] != '!':
         newText.append(text[i])
+
     elif i == (len(text))-1:
-      if text[i-1] != '√':
+      if text[i] == '!':
+        newText.append(factorial(text[i-1])
+      elif text[i-1] != '√':
         newText.append(text[i])
 
     elif text[i] == '!':
-      newText.append(factorial(text[i-1]))
+      newText.append(factorial(text[i-1])
 
     elif text[i] == '√':
       newText.append(square(text[i+1]))
