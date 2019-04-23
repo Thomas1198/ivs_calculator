@@ -83,7 +83,7 @@ def evalOneOperandOperators(expr_infix):
             elif expr_infix[i - 1] != '√':
                 res_list.append(expr_infix[i])
             else:
-                if expr_infix[i - 2] not in op and i - 1 != 0:
+                if expr_infix[i - 2] not in op and i-1 != 0:
                     res_list.append(expr_infix[i])
 
         elif expr_infix[i] == '!':
@@ -95,7 +95,7 @@ def evalOneOperandOperators(expr_infix):
         elif (expr_infix[i + 1] != '!') and (expr_infix[i - 1] != '√'):
             res_list.append(expr_infix[i])
 
-        elif (expr_infix[i - 1] == '√') and (expr_infix[i - 2] not in op) and (i - 1 != 0):
+        elif (expr_infix[i - 1] == '√') and (expr_infix[i - 2] not in op) and (i-1 != 0):
             res_list.append(expr_infix[i])
 
     return res_list
@@ -125,7 +125,7 @@ def evalExpr(postfixList):
             elif element == '^':
                 result = power(op1, op2)
             elif element == '√':
-                result = nth_root(op1, op2)
+                result = nth_root(op2, op1)
             else:
                 # TODO add reaction on error
                 print("Unknown operand/operator")
@@ -134,12 +134,17 @@ def evalExpr(postfixList):
 
 
 def solve_expr(expr_str):
-    """
-    main function that call others functions
+    """main function that call others functions
     @param expr_str string input
     @return result of input 
     """
     expr_infix = expresionStrToList(expr_str)
+    print(expr_str)
+    print("-LIST-", expr_infix)
     expr_infix = evalOneOperandOperators(expr_infix)
+    print("-EVALONE-", expr_infix)
     expr_postfix = infixToPostfix(expr_infix)
+    print("-POSTFIX-", expr_postfix)
+    #print("EXPECTED:", calculate(expr_str))
+    print("RETURNED:", evalExpr(expr_postfix))
     return evalExpr(expr_postfix)
