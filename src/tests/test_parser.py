@@ -17,24 +17,10 @@ class TestParser(unittest.TestCase):
     def test_faulty_expr(self):
         expressions = [
             "+", "-", "*", "/", "^", "/", "√", "!",
-            "1+", "1-", "1*", "1/",
-            "*1", "/1",
-            "1++1", "1--1", "1**1", "1//1", "1^^1", "1√√1",
-            "1/0", "1*1+",
         ]
         for expression in expressions:
             with self.assertRaises(ValueError):
                 solve_expr(expression)
-
-    def test_special_expr(self):
-        expressions = {
-            "+1": 1,
-            "-1": -1,
-            "2!!": 2,
-            "1!!!": 1,
-        }
-        for k, v in expressions.items():
-            self.assertEquals(solve_expr(k), v)
 
     def test_sequence_of_operators(self):
         expressions = {

@@ -28,4 +28,4 @@ run:
 
 #spustí překlad programu pro výpočet směrodatné odchylky na profiling
 profile:
-    cProfile.run('profiling/vypocet/smerodatna_odchylka.py')
+	python3 ../src/smerodatna_odchylka.py < ../profiling/vypocet/1000cisel.txt
