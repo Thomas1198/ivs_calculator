@@ -8,76 +8,82 @@ from main.modules.math import *
 # priorities 3 ^√
 #            2 /*
 #            1 -+
-def infixToPostfix(expresions):
+def infixToPostfix(expr_infix):
     priorities = {'/': 2, '*': 2, '-': 1, '+': 1, '^': 3, '√': 3}
-    postFixList = list()
+    expr_postfix = list()
     stack = list()
-    for element in expresions:
+    for element in expr_infix:
         if element not in ('/', '*', '-', '+', '^', '√'):
-            postFixList.append(element)
+            expr_postfix.append(element)
         elif element in ('/', '*', '-', '+', '^', '√'):
             while not len(stack) == 0 and priorities[stack[-1]] > priorities[element]:
-                postFixList.append(stack.pop())
+                expr_postfix.append(stack.pop())
             stack.append(element)
 
     while not len(stack) == 0:
-        postFixList.append(stack.pop())
+        expr_postfix.append(stack.pop())
 
-    return postFixList
+    return expr_postfix
 
 
-def expresionToList(expresion):
-    res_list = list()
+def expresionStrToList(expr_str):
+    expr_list = list()
     number = ""
-    for c in expresion:
+    for c in expr_str:
         if c in "0123456789.":
             number = number + c
         elif c in "/*-+!^√":
             if len(number) != 0:
-                res_list.append(float(number))
+                if '.' in number:
+                    expr_list.append(float(number))
+                else:
+                    expr_list.append(int(number))
                 number = ""
-            res_list.append(c)
+            expr_list.append(c)
         else:
             # TODO add reaction on error
             print("Unknown operand/operator")
 
     if len(number) != 0:
-        res_list.append(float(number))
-    return res_list
+        if '.' in number:
+            expr_list.append(float(number))
+        else:
+            expr_list.append(int(number))
+    return expr_list
 
 
-def fact_square(text):
-    op = ['*','/','+','-','^','√']
-    newText = []
-    for i in range(len(text)):
+def evalOneOperandOperators(expr_infix):
+    op = ['*', '/', '+', '-', '^', '√']
+    res_list = []
+    for i in range(len(expr_infix)):
         if i == 0:
-            if text[i] == '√':
-                newText.append(square(text[i + 1]))
-            elif text[i + 1] != '!':
-                newText.append(text[i])
+            if expr_infix[i] == '√':
+                res_list.append(square(expr_infix[i + 1]))
+            elif expr_infix[i + 1] != '!':
+                res_list.append(expr_infix[i])
 
-        elif i == (len(text)) - 1:
-            if text[i] == '!':
-                newText.append(factorial(int(text[i - 1])))
-            elif text[i - 1] != '√':
-                newText.append(text[i])
+        elif i == (len(expr_infix)) - 1:
+            if expr_infix[i] == '!':
+                res_list.append(factorial(expr_infix[i - 1]))
+            elif expr_infix[i - 1] != '√':
+                res_list.append(expr_infix[i])
             else:
-                if text[i-2] not in op:
-                    newText.append(text[i])
+                if expr_infix[i - 2] not in op:
+                    res_list.append(expr_infix[i])
 
-        elif text[i] == '!':
-            newText.append(factorial(int(text[i - 1])))
+        elif expr_infix[i] == '!':
+            res_list.append(factorial(expr_infix[i - 1]))
 
-        elif text[i] == '√' and text[i-1] in op:
-            newText.append(square(text[i + 1]))
+        elif expr_infix[i] == '√' and expr_infix[i - 1] in op:
+            res_list.append(square(expr_infix[i + 1]))
 
-        elif (text[i + 1] != '!') and (text[i - 1] != '√'):
-            newText.append(text[i])
+        elif (expr_infix[i + 1] != '!') and (expr_infix[i - 1] != '√'):
+            res_list.append(expr_infix[i])
 
-        elif (text[i-1] == '√') and (text[i-2] not in op):
-            newText.append(text[i])
+        elif (expr_infix[i - 1] == '√') and (expr_infix[i - 2] not in op):
+            res_list.append(expr_infix[i])
 
-    return newText
+    return res_list
 
 
 def final(text):
@@ -88,30 +94,12 @@ def final(text):
       stack.append(i)
       continue
 
-    x, y = stack.pop(), stack.pop()
-    if i == '+':
-      stack.append(add(x, y))
-    elif i == '-':
-      stack.append(substract(x, y))
-    elif i == '*':
-      stack.append(multiply(x, y))
-    elif i == '/':
-      stack.append(divide(x, y))
-    elif i == '^':
-      stack.append(power(x, y))
-    elif i == '√':
-      stack.append(nth_root(x, y))
-    #NEED FIX
-  return stack
 
-
-def solve_expr(expresion_str):
-    expresion_infix = expresionToList(expresion_str)
-    print("-LIST-", expresion_infix)
-    expresion_infix = fact_square(expresion_infix)
-    print("-LIST2-", expresion_infix)
-    expresion_postfix = infixToPostfix(expresion_infix)
-    print("-POSTFIX-", expresion_postfix)
-    postfix = final(expresion_postfix)
-    print("-final-", postfix)
-    return postfix
+def solve_expr(expr_str):
+    expr_infix = expresionStrToList(expr_str)
+    print("-LIST-", expr_infix)
+    expr_infix = evalOneOperandOperators(expr_infix)
+    print("-LIST2-", expr_infix)
+    expr_postfix = infixToPostfix(expr_infix)
+    print("-POSTFIX-", expr_postfix)
+    return evalExpr(expr_postfix)
