@@ -63,7 +63,6 @@ def expresionStrToList(expr_str):
 
 def evalOneOperandOperators(expr_infix):
     """
-
     @param expr_infix:
     @return:
     """
@@ -102,7 +101,6 @@ def evalOneOperandOperators(expr_infix):
 
 def evalExpr(postfixList):
     """
-
     @param postfixList:
     @return:
     """
@@ -146,6 +144,6 @@ def solve_expr(expr_str):
     print("-EVALONE-", expr_infix)
     expr_postfix = infixToPostfix(expr_infix)
     print("-POSTFIX-", expr_postfix)
-    print("EXPECTED:", calculate(expr_str))
+    #print("EXPECTED:", calculate(expr_str))
     print("RETURNED:", evalExpr(expr_postfix))
     return evalExpr(expr_postfix)
