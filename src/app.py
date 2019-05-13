@@ -1,3 +1,9 @@
+##
+# @file app.py
+# @brief Main file for app
+# @author xchova20
+# @date 22.4. 2019
+
 import kivy
 from kivy.app import App
 from kivy.uix.gridlayout import GridLayout
@@ -19,6 +25,10 @@ with open('main/views/layout.kv', encoding='utf8') as f:
 
 
 class CalculatorGridLayout(GridLayout):
+    ## 
+     # main function that calls parser module
+     # @param float input from app
+     # @return float result
     def calculate(self, expr):
         if expr:
             try:
@@ -47,7 +57,8 @@ class CustomButton(Button):
     def __init__(self, **kwargs):
         Window.bind(mouse_pos=self.on_mouse_pos)
         super(Button, self).__init__(**kwargs)
-
+          
+    # @brief function for showing help
     def on_mouse_pos(self, *args):
         if not self.get_root_window():
             return
